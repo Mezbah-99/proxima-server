@@ -1,0 +1,27 @@
+=> Nodemon sobsomoy development-ee install hobe
+example: scripts: { "dev": "nodemon fileName.js"}
+
+=> how to push my project in github
+ 1 git add .
+ 2 git commit -m "comment"
+ 3 git branch -M main
+ 4 copy url from git remote add origin
+ 5 git push -u origin main
+
+ => mongodb user or password
+username: mk6449248
+ password: fwtpYK0eYRPlSJX0
+
+
+
+
+
+
+
+
+
+
+
+
+ *** Not understanding proxima 4, 5
+
