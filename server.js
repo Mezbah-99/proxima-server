@@ -2,7 +2,8 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose');
-
+const projectRouter = require('./ProjectsRouter/router')
+const userRoutes = require('./ProjectsRouter/userRouter')
 
 const app  = express();
 
@@ -11,9 +12,9 @@ const app  = express();
 app.use(express.json())
 app.use(cors())
 
-const projectRouter = require('./ProjectsRouter/router')
 // routes middlewares
 app.use('/api/projects', projectRouter)
+app.use('/api/user', userRoutes)
 
 port = process.env.PORT || 4000;
 mongoose.connect(process.env.MONGODB_URI)
