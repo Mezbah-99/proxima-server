@@ -3,7 +3,7 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose');
 const projectRouter = require('./ProjectsRouter/router')
-const userRoutes = require('./ProjectsRouter/userRouter')
+const userRouter = require('./ProjectsRouter/userRouter')
 
 const app  = express();
 
@@ -14,7 +14,7 @@ app.use(cors())
 
 // routes middlewares
 app.use('/api/projects', projectRouter)
-app.use('/api/user', userRoutes)
+app.use('/api/user', userRouter)
 
 port = process.env.PORT || 4000;
 mongoose.connect(process.env.MONGODB_URI)
