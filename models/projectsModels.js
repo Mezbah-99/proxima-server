@@ -26,6 +26,10 @@ const projectSchema = new Schema({
     dev: {
         type: Number,
         requird: true
+    },
+    user_id: {
+        type: String,
+        required: true
     }
 }, {timestamps: true})
 

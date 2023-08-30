@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { getAllprojects, getSingleProjects, postNewProjects, deleteProjects, patchProjects } = require('../controllers/projectsControllers');
+const requireAuth = require('../middlewares/requireAuth');
+
+// This is conditional route
+router.use(requireAuth)
 
 // Get all products
 router.get('/', getAllprojects)

@@ -23,13 +23,14 @@ userSchema.statics.signup = async function (email, password) {
     }
 
     // check if the email is valid
-    if(!validator.isEmail(email)){
+    if (!validator.isEmail(email)) {
         throw Error("Invalid email")
     }
 
     // Lowercase, uppercase, number, symbol, 8+ chars
     const exist = await this.findOne({ email })
-    if(!validator.isStrongPassword(password)){
+    
+    if (!validator.isStrongPassword(password)) {
         throw Error('Password is not strong, try to combine uppercase, locawercase, number, symbol and minimum of 8 charectors!')
     }
 
@@ -45,6 +46,28 @@ userSchema.statics.signup = async function (email, password) {
     const user = await this.create({ email, password: hash })
 
     return user;
+}
+
+userSchema.statics.login = async function (email, password) {
+    // validation
+    if (!email || !password) {
+        throw Error("All fields must be filled!")
+    }
+
+    const user = await this.findOne({ email })
+
+    if(!user){
+        throw Error("Incorrect email")
+    }
+
+    const match = await bcrypt.compare(password, user.password)
+
+    if(!match){
+        throw Error('Incorrect password!')
+    }
+
+    return user;
+
 }
 
 module.exports = mongoose.model('User', userSchema)

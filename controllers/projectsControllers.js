@@ -3,8 +3,11 @@ const Project = require('../models/projectsModels');
 
 // Get all products
 const getAllprojects =  async (req, res) => {
+
+    const user_id = req.user._id;
+
     try {
-        const data = await Project.find({}).sort({createdAt: -1}); // Decending, newly added project on top (lifo)
+        const data = await Project.find({user_id}).sort({createdAt: -1}); // Decending, newly added project on top (lifo)
         res.status(200).json(data)
     } catch (error) {
         res.status(404).json({error: error.message})
@@ -26,8 +29,13 @@ const getSingleProjects =  async (req, res) => {
 // Post a new projects
 const postNewProjects = async (req, res) => {
    
+    const user_id = req.user._id;
+
     try {
-        const project = await Project.create({...req.body})
+        const project = await Project.create({
+            ...req.body,
+            user_id
+        })
         res.status(200).json(project)
     } catch (error) {
         res.status(400).json({error: error.message})
